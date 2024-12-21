@@ -29,10 +29,10 @@ class Book:
 # TODO: написать класс Library
 class Library:
     def __init__(self, books=None):
-        if books is None:
-            self.books = []
-        else:
+        if books is not None:
             self.books = books
+        else:
+            self.books = []
 
     def get_next_book_id(self):
         if not self.books:
@@ -41,7 +41,7 @@ class Library:
 
     def get_index_by_book_id(self, id_):
         for i, book in enumerate(self.books):
-            if book['id'] == id_:
+            if book.id == id_:
                 return i
         raise ValueError('Книги с запрашиваемым id не существует')
 
