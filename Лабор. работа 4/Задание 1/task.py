@@ -30,7 +30,7 @@ class Evergreen:
         return f"{self.crown} {self.cone} {self.tone}"
 
     def __repr__(self) -> str:
-        return f"Evergreen(crown={self.crown!r}, pinecone={self.cone!r}, tone={self.tone!r})"
+        return f"Evergreen(crown={self.crown!r}, cone={self.cone!r}, tone={self.tone!r})"
 
 
 # TODO: описать дочерний класс
@@ -54,7 +54,7 @@ class Pine(Evergreen):
         return self._height
 
     @height.setter
-    def height(self, value: float):
+    def height(self, value: (int, float)):
         if not isinstance(value, (int, float)):
             raise TypeError('Высота дерева должна быть целым числом или числом с плавающей точкой')
         if value <= 0:
