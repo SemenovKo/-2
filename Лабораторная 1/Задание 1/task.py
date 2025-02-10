@@ -1,9 +1,5 @@
 # TODO: Подробно описать три произвольных класса
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+import doctest
 
 
 # TODO: описать класс
@@ -52,15 +48,15 @@ class Printer:
 
         if not isinstance(paper, int):
             raise TypeError('Добавляемые листы бумаги должны быть типа int')
-        if paper < 0:
-            raise ValueError("Добавляемые листы бумаги должны быть положительным числом")
+        if paper <= 0:
+            raise ValueError("Добавляемые листы бумаги должны быть положительным числом и не равным нулю")
 
         return paper
 
 
 # TODO: описать ещё класс
 class Flask:
-    def __init__(self, gas: str, volume: (int, float), filled_volume: (int, float)):
+    def __init__(self, gas: str, volume: int | float, filled_volume: int | float):
         """
         Инициализация колбы с газом
 
@@ -75,13 +71,13 @@ class Flask:
         if gas not in {'аргон', 'неон', 'криптон', 'ксенон'}:
             raise ValueError("Газ должен быть благородным: 'аргон', 'неон', 'криптон', 'ксенон'")
         self.gas = gas
-        if not isinstance(volume, (int, float)):
+        if not isinstance(volume, int | float):
             raise TypeError('Объем колбы должен быть типа int или float')
         if volume <= 0:
             raise ValueError('Объем не может быть отрицательным')
         self.volume = volume
 
-        if not isinstance(filled_volume, (int, float)):
+        if not isinstance(filled_volume, int | float):
             raise TypeError('Объем, заполненный газом, должен быть типа int или float')
         if filled_volume < 0:
             raise ValueError('Объем, заполненный газом, не может быть отрицательным')
@@ -100,7 +96,7 @@ class Flask:
 
         return self.filled_volume >= self.volume
 
-    def change_temp(self, new_temp: (int, float) = 5000) -> str:
+    def change_temp(self, new_temp: int | float = 5000) -> str:
         """
         Фунция, изменяющая температуру газа в колбе до определенного значения
         :param new_temp: Конечная температура газа в колбе
@@ -111,7 +107,7 @@ class Flask:
         >>> flask.change_temp(10000)
         'Температура газа: неон изменена до 10000 градусов Цельсия'
         """
-        if not isinstance(new_temp, (int, float)):
+        if not isinstance(new_temp, int | float):
             raise TypeError('Новая температура должны быть типа int или float')
         if new_temp <= 0:
             raise ValueError('Новая температура газа не может быть отрицательной или равной нулю')
@@ -124,13 +120,12 @@ class Pelmeni:
         """
         Инициализация пельменей
         :param quantity: Кол-во пельменей в кастрюле
-                :param meat: Из чего сделаны пельмени (например, 'свинина', 'говядина', 'курица')
+        :param meat: Из чего сделаны пельмени (например, 'свинина', 'говядина', 'курица')
 
-                Пример:
-                >>> pelmeni = Pelmeni(25, 'курица')
+        Пример:
+        >>> pelmeni = Pelmeni(25, 'курица')
 
-
-                """
+        """
         if not isinstance(quantity, int):
             raise TypeError('Кол-во пельменей должно быть типа int')
         if quantity < 0:
@@ -154,7 +149,7 @@ class Pelmeni:
         if added_pelmeni <= 0:
             raise ValueError('Кол-во добавленных пельменей должно быть положительным числом и не равным нулю')
 
-    def check_price(self, price: (int, float)) -> str:
+    def check_price(self, price: int | float) -> str:
         """
         Функция, проверяющая стоимость пельменей
 
@@ -163,7 +158,7 @@ class Pelmeni:
         >>> pelmeni.check_price(25)
         'Цена 5 пельменей - 125'
         """
-        if not isinstance(price, (int, float)):
+        if not isinstance(price, int | float):
             raise TypeError('Цена пельменя должна быть типа int или float')
         if price <= 0:
             raise ValueError('Цена пельменя должна быть положительным числом и не равна нулю')
